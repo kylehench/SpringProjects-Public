@@ -8,12 +8,12 @@
 		<version>2.6.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.kylehench.helloworld</groupId>
-	<artifactId>helloWorld</artifactId>
+	<groupId>com.kylehench.fruityLoops</groupId>
+	<artifactId>06-fruityLoops</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>helloWorld</name>
-	<description>First Spring Project</description>
+	<name>06-fruityLoops</name>
+	<description>Spring Project</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -38,6 +38,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
 		</dependency>
 	</dependencies>
 
