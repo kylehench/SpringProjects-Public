@@ -10,10 +10,13 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
-
-hello, world
-<br />
-${book.title}
-
+<div class="container">
+	<h2><c:out value="${book.title}" /></h2>
+	<p>
+		Description: <c:out value="${book.description}" /><br />
+		Language: <c:out value="${book.language}" /><br />
+		Number of Pages: <c:out value="${book.numberOfPages}" />
+	</p>
+</div>
 </body>
 </html>

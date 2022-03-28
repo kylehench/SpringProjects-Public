@@ -43,7 +43,10 @@ public class BookService {
     
     // delete book
     public void deleteBook(Long id) {
-    	bookRepository.deleteById(id);
+    	Optional<Book> optionalBook = bookRepository.findById(id);
+    	if (optionalBook.isPresent()) {
+    		bookRepository.deleteById(id);
+    	}
     }
 
 }
