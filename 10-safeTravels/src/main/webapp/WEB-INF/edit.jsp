@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isErrorPage="true" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,25 +12,12 @@
 </head>
 <body>
 <div class="container">
-	<h2 class="mt-4">Save Travels</h2>
-	<table class="table table-hover">
-		<tr>
-			<th>Expense</th>
-			<th>Vendor</th>
-			<th>Amount</th>
-			<th>Actions</th>
-		</tr>
-		<c:forEach var="expense" items="${expenses}">
-			<tr>
-				<td><c:out value="${expense.name}"/></td>
-				<td><c:out value="${expense.vendor}"/></td>
-				<td><c:out value="${expense.amount}"/></td>
-				<td><a href="/expenses/<c:out value="${expense.id}"/>/edit">edit</a></td>
-			</tr>
-		</c:forEach>
-	</table>
-	<h2 class="mt-4">Add an expense:</h2>
-	<form:form action="/" method="post" modelAttribute="expense">
+	<div class="d-flex justify-content-between align-items-baseline">
+		<h2 class="mt-4">Edit expense:</h2>
+		<p><a href="/">Go back</a></p>
+	</div>
+	<form:form action="/expenses/${expense.id}" method="post" modelAttribute="expense">
+		<input type="hidden" name="_method" value="put">
 		<form:label path="name">Name:</form:label>
 		<form:errors path="name"/>
 		<form:input type="text" path="name" class="form-control mb-2"/>

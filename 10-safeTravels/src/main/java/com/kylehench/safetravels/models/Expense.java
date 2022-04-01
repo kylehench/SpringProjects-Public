@@ -28,7 +28,7 @@ public class Expense {
     @NotNull
     @Size(min = 3, max = 200, message="Vendor must be at least 3 characters.")
     private String vendor;
-    @NotNull
+    @NotNull(message="Please enter an amount")
     @Min(value = 0, message="Amount must be at least 0")
     private double amount;
     @Column(updatable=false)
