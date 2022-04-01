@@ -36,8 +36,14 @@ public class ExpenseService {
     }
     // update expense
     public Expense updateExpense(Expense e) {
-    	return expenseRepository.save(e);
-    	
+    	return expenseRepository.save(e);    	
     }
+    // delete expense
+	public void delete(Long id) {
+		Optional<Expense> optionalExpense = expenseRepository.findById(id);
+		if (optionalExpense.isPresent()) {
+			expenseRepository.deleteById(id);		
+		}
+	}
 
 }
