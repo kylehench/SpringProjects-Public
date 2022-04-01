@@ -47,6 +47,11 @@ public class MainController {
 			return "redirect:/expenses";
 		}
 	}
+	@GetMapping("/expenses/{id}")
+	public String expense(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("expense", expenseService.findById(id));
+		return "view.jsp";
+	}
 	@GetMapping("/expenses/{id}/edit")
 	public String edit(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("expense", expenseService.findById(id));

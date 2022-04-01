@@ -21,9 +21,9 @@
 		</tr>
 		<c:forEach var="expense" items="${expenses}">
 			<tr>
-				<td><c:out value="${expense.name}"/></td>
+				<td><a href="/expenses/<c:out value="${expense.id}"/>"><c:out value="${expense.name}"/></a></td>
 				<td><c:out value="${expense.vendor}"/></td>
-				<td><c:out value="${expense.amount}"/></td>
+				<td>$<c:out value="${expense.amount}"/></td>
 				<td class="d-flex">
 					<a class="btn btn-primary" href="/expenses/<c:out value="${expense.id}"/>/edit">edit</a>
 					<form action="/expenses/${expense.id}" method="post">
