@@ -18,8 +18,7 @@
 		<form:select path="dojo" class="form-select mb-2">
 			<option value="none" selected disabled hidden>--- Select an Option ---</option>
 			<c:forEach var="dojo" items="${dojos}">
-				<option value="${dojo.id}"><c:out value="${dojo.name}"/></option>
-				
+				<form:option value="${dojo.id}"><c:out value="${dojo.name}"/></form:option>
 			</c:forEach>
 		</form:select>
 		<form:label path="first_name">First name:</form:label>
@@ -34,6 +33,7 @@
 		</div>
 		<input type="submit" value="Submit" class="btn btn-primary"/>
 	</form:form>
+	<div class="mt-4"><a href="/">Home</a></div>
 </div>
 </body>
 </html>

@@ -6,20 +6,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>New Dojo</title>
+<title>Dojos</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-	<h2 class="mt-4">New Dojo:</h2>
-	<form:form action="/dojos/create" method="post" modelAttribute="dojo">
-		<form:label path="name">Name:</form:label>
-		<form:errors path="name"/>
-		<form:input type="text" path="name" class="form-control mb-2"/>
-		<input type="submit" value="Submit" class="mb-4 btn btn-primary"/>
-	</form:form>
-	<a class="mt-4" href="/ninjas/new">New Ninja</a><br>
-	<a class="mt-4" href="/dojos">View Dojos</a>
+	<h2 class="mt-4">Dojos:</h2>
+	<c:forEach var="dojo" items="${dojos}">
+		<a href="dojos/${dojo.id}">Ninjas at <c:out value="${dojo.name}"/></a> <br>
+	</c:forEach>
+	<div class="mt-4"><a href="/">Home</a></div>
 </div>
 </body>
 </html>

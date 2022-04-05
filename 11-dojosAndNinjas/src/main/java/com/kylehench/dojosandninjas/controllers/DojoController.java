@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kylehench.dojosandninjas.services.DojoService;
+import com.kylehench.dojosandninjas.services.NinjaService;
 import com.kylehench.dojosandninjas.models.Dojo;
 
 @Controller
@@ -20,6 +22,9 @@ public class DojoController {
 	
 	@Autowired
 	DojoService dojoService;
+	
+	@Autowired
+	NinjaService ninjaService;
 	
 	// new Dojo
 	 @GetMapping("/new")
@@ -38,6 +43,20 @@ public class DojoController {
 		return "redirect:/dojos/new";
 	}
 	
+	// view Dojos
+	@GetMapping
+	public String dojos(Model model) {
+		model.addAttribute("dojos", dojoService.all());
+		return "view_dojos.jsp";
+	}
+
+	// Ninjas at Dojo
+	@GetMapping("/{id}")
+	public String ninjasAtDojo(@PathVariable("id") long id, Model model) {
+		model.addAttribute("dojo", dojoService.read(id));
+		model.addAttribute("ninjas", ninjaService.allFromDojoId(id));
+		return "ninjas_at_dojo.jsp";
+	}
 	
 	
 //	@GetMapping("/expenses")

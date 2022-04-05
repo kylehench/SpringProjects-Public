@@ -22,6 +22,10 @@ public class NinjaService {
     public List<Ninja> all() {
         return ninjaRepository.findAll();
     }
+    // return all from Dojo id
+    public List<Ninja> allFromDojoId(long id) {
+    	return ninjaRepository.findByDojo_id(id);
+    }
     // create
     public Ninja create(Ninja o) {
     	return ninjaRepository.save(o);

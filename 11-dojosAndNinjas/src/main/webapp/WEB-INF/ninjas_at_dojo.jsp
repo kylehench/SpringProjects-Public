@@ -6,20 +6,27 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>New Dojo</title>
+<title>Dojos</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
-	<h2 class="mt-4">New Dojo:</h2>
-	<form:form action="/dojos/create" method="post" modelAttribute="dojo">
-		<form:label path="name">Name:</form:label>
-		<form:errors path="name"/>
-		<form:input type="text" path="name" class="form-control mb-2"/>
-		<input type="submit" value="Submit" class="mb-4 btn btn-primary"/>
-	</form:form>
-	<a class="mt-4" href="/ninjas/new">New Ninja</a><br>
-	<a class="mt-4" href="/dojos">View Dojos</a>
+	<h2 class="mt-4"><c:out value="${dojo.name}"/> Location Ninjas:</h2>
+	<table class="table table-hover">
+	  <tr>
+	    <th>First Name</th>
+	    <th>Last Name</th>
+	    <th>Age</th>
+	  </tr>
+	<c:forEach var="ninja" items="${ninjas}">
+	  <tr>
+	    <td>${ninja.first_name}</td>
+	    <td>${ninja.last_name}</td>
+	    <td>${ninja.age}</td>
+	  </tr>
+	</c:forEach>
+	</table>
+	<div class="mt-4"><a href="/">Home</a></div>
 </div>
 </body>
 </html>

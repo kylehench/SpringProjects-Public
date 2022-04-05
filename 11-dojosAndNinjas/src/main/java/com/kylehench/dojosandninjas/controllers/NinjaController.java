@@ -29,19 +29,20 @@ public class NinjaController {
 	DojoService dojoService;
 	
 	// new Ninja
-	 @GetMapping("/new")
-	 public String new_ninja(@ModelAttribute("ninja") Ninja ninja, Model model) {
-		model.addAttribute("dojos", dojoService.all());
-	 	return "new_ninja.jsp";
-	 }
+	@GetMapping("/new")
+	public String new_ninja(@ModelAttribute("ninja") Ninja ninja, Model model) {
+		 model.addAttribute("dojos", dojoService.all());
+		return "new_ninja.jsp";
+	}
 	
-	// create Ninja
+	 // create Ninja
 	@PostMapping("/create")
 	public String create_ninja(@Valid @ModelAttribute("ninja") Ninja ninja,
 			BindingResult result) {
 		 if (result.hasErrors()) {
 			 // Ninjas error handling does not work, dropdown disappears
-			 return "new_ninja.jsp";
+			 return "1";
+			 // return "new_ninja.jsp";
 		 }
 		ninjaService.create(ninja);
 		return "redirect:/ninjas/new";
