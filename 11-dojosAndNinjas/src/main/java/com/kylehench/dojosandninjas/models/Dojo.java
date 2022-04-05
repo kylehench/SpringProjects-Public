@@ -39,14 +39,19 @@ public class Dojo {
 	
 	// relationship with Ninja
 	@OneToMany(mappedBy="dojo", fetch=FetchType.LAZY)
-	private List<Ninja> ninja;
+	private List<Ninja> ninjas;
 
 	public Dojo() {}
 	
-	public Dojo(String name, List<Ninja> ninja) {
+
+	public Dojo(Long id, String name, Date created_at, Date updated_at, List<Ninja> ninjas) {
+		this.id = id;
 		this.name = name;
-		this.ninja = ninja;
+		this.created_at = created_at;
+		this.updated_at = updated_at;
+		this.ninjas = ninjas;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -80,12 +85,12 @@ public class Dojo {
 		this.updated_at = updated_at;
 	}
 
-	public List<Ninja> getNinja() {
-		return ninja;
+	public List<Ninja> getNinjas() {
+		return ninjas;
 	}
 
-	public void setNinja(List<Ninja> ninja) {
-		this.ninja = ninja;
+	public void setNinjas(List<Ninja> ninjas) {
+		this.ninjas = ninjas;
 	}
 
 	@PrePersist

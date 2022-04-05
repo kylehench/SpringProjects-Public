@@ -8,7 +8,7 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String home() {
-		return "new_dojo.jsp";
+		return "redirect:/dojos/new";
 	}
 
 }

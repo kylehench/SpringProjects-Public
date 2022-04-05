@@ -1,7 +1,5 @@
 package com.kylehench.dojosandninjas.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +19,23 @@ import com.kylehench.dojosandninjas.models.Dojo;
 public class DojoController {
 	
 	@Autowired
-	DojoService service;
+	DojoService dojoService;
 	
 	// new Dojo
-	@GetMapping("/")
-	public String new_dojo(@ModelAttribute("dojo") Dojo dojo, Model model) {
-		// model.addAttribute("dojo", Dojo);
-		return "new_dojo.jsp";
-	}
+	 @GetMapping("/new")
+	 public String new_dojo(@ModelAttribute("dojo") Dojo dojo) {
+	 	return "new_dojo.jsp";
+	 }
 	
 	// create Dojo
-	@PostMapping("/")
+	@PostMapping("/create")
 	public String create_dojo(@Valid @ModelAttribute("dojo") Dojo dojo,
-			BindingResult result, Model model) {
+			BindingResult result) {
 		if (result.hasErrors()) {
 			return "new_dojo.jsp";
 		}
-		service.create(dojo);
-		return "redirect:/";
+		dojoService.create(dojo);
+		return "redirect:/dojos/new";
 	}
 	
 	

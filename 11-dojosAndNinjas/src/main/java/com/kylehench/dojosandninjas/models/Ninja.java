@@ -37,8 +37,8 @@ public class Ninja {
 	private String last_name;
 	
 	@NotNull
-    @Min(value = 0, message="Age must be between 18 and 125")
-	@Max(value = 0, message="Age must be between 18 and 125")
+    @Min(value = 18, message="Age must be between 18 and 125")
+	@Max(value = 125, message="Age must be between 18 and 125")
     private int age;
 	
 	// created at and updated at

@@ -12,7 +12,7 @@
 <body>
 <div class="container">
 	<h2 class="mt-4">New Dojo:</h2>
-	<form:form action="/dojos" method="post" modelAttribute="dojo">
+	<form:form action="/dojos/create" method="post" modelAttribute="dojo">
 		<form:label path="name">Name:</form:label>
 		<form:errors path="name"/>
 		<form:input type="text" path="name" class="form-control mb-2"/>
