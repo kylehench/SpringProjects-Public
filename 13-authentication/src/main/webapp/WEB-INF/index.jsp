@@ -36,7 +36,7 @@
 				<form:input type="text" path="email" class="form-control mb-2" />
 				<form:label path="password">Password:</form:label>
 				<form:errors path="password"/>
-				<form:input type="text" path="password" class="form-control mb-2" />
+				<form:input type="password" path="password" class="form-control mb-2" />
 				<input type="submit" value="Login" class="btn btn-success" />
 			</form:form>
 		</div>
