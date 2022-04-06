@@ -37,12 +37,9 @@ public class NinjaController {
 	
 	 // create Ninja
 	@PostMapping("/create")
-	public String create_ninja(@Valid @ModelAttribute("ninja") Ninja ninja, Model model,
-			BindingResult result) {
+	public String create_ninja(@Valid @ModelAttribute("ninja") Ninja ninja,	BindingResult result, Model model) {
 		 if (result.hasErrors()) {
-			 // Ninjas error handling does not work, dropdown disappears
-			 model.addAttribute("ninja", new Ninja());
-			 // return "1";
+			 model.addAttribute("dojos", dojoService.all());
 			 return "new_ninja.jsp";
 		 }
 		ninjaService.create(ninja);
