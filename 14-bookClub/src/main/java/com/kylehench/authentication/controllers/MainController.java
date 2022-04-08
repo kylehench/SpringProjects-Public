@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.kylehench.authentication.models.Book;
 import com.kylehench.authentication.models.LoginUser;
@@ -39,11 +40,11 @@ public class MainController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
             BindingResult result, Model model, HttpSession session) {        
+    	User user = userService.register(newUser, result);
         if(result.hasErrors()) {
             model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
-        User user = userService.register(newUser, result);
         session.setAttribute("userId", user.getId());
         session.setAttribute("userName", user.getUserName());
         return "redirect:/books";
@@ -87,11 +88,34 @@ public class MainController {
     public String booksCreate(@Valid @ModelAttribute("newBook") Book newBook, BindingResult result, Model model, HttpSession session) {
     	if (session.getAttribute("userId")==null) return "redirect:/logout";
     	if (result.hasErrors()) {
-    		model.addAttribute("newBook", new Book());
     		return "books_new.jsp";
     	}
     	newBook.setUser(userService.read((long) session.getAttribute("userId")));
     	bookService.save(newBook);
+    	return "redirect:/books";
+    }
+    
+    @GetMapping("/books/{id}/edit")
+    public String booksEdit(@PathVariable long id, Model model, HttpSession session) {
+    	if (session.getAttribute("userId")==null) return "redirect:/logout";
+    	Book book = bookService.read(id);
+    	// log user out if inappropriate access
+    	if (book.getUser().getId() != (long) session.getAttribute("userId")) return "redirect:/logout";
+    	model.addAttribute("book", book);
+    	return "books_edit.jsp";
+    }
+    
+    @PutMapping("/books/{id}")
+    public String booksUpdate(@PathVariable long id, @Valid @ModelAttribute("book") Book book, BindingResult result, Model model, HttpSession session) {
+    	if (session.getAttribute("userId")==null) return "redirect:/logout";
+    	if (result.hasErrors()) {
+    		return "books_edit.jsp";
+    	}
+    	Book oldBook = bookService.read(id);
+    	// add user to book and log out if inappropriate access
+    	book.setUser(oldBook.getUser());
+    	if (book.getUser().getId() != (long) session.getAttribute("userId")) return "redirect:/logout";
+    	bookService.save(book);
     	return "redirect:/books";
     }
     

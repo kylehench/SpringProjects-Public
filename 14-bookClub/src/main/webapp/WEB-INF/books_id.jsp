@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +32,9 @@
 	<hr>
 	<p>${book.thoughts}</p>
 	<hr>
-		<div class="d-flex justify-content-end"><a href="/books/${book.id}/edit"><button type="button" class="btn btn-secondary">Edit</button></a></div>
+    <c:if test="${sessionScope.userId eq book.user.id}">
+	<div class="d-flex justify-content-end"><a href="/books/${book.id}/edit"><button type="button" class="btn btn-secondary">Edit</button></a></div>
+	</c:if>
 </div>
 </body>
 </html>
