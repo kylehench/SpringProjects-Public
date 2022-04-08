@@ -14,7 +14,7 @@
 	<div class="d-flex justify-content-between mt-3">
 		<div>
 			<h2>Welcome, <c:out value="${userName}"/></h2>
-			<p>This is your dashboard. Nothing to see yet.</p>
+			<p>Books from everyone's shelves:</p>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-end">
 			<a href="/logout">Logout</a>
