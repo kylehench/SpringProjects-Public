@@ -13,30 +13,25 @@
 <div class="container">
 	<div class="d-flex justify-content-between mt-3">
 		<div>
-			<h2>Welcome, <c:out value="${userName}"/></h2>
-			<p>This is your dashboard. Nothing to see yet.</p>
+			<h2><c:out value="${book.title}"/></h2>
+			<c:choose>
+			    <c:when test="${sessionScope.userId eq book.user.id}">
+					<p>You read <b>${book.title}</b> by <b>${book.author}</b>.<br>Here are your thoughts:</p>
+			    </c:when>
+			    <c:otherwise>
+					<p>${book.user.userName} read <b>${book.title}</b> by <b>${book.author}</b>.<br>Here are ${book.user.userName}'s thoughts:</p>
+			    </c:otherwise>
+			</c:choose>
 		</div>
 		<div class="d-flex flex-column justify-content-center align-items-end">
 			<a href="/logout">Logout</a>
-			<a href="/books/new">+ Add a book to my shelf!</a>
+			<a href="/books">Back to the shelves</a>
 		</div>
 	</div>
-	<table class="table table-hover">
-	  <tr>
-	    <th>ID</th>
-	    <th>Title</th>
-	    <th>Author Name</th>
-	    <th>Posted By</th>
-	  </tr>
-	<c:forEach var="book" items="${books}">
-	  <tr>
-	    <td>${book.id}</td>
-	    <td><a href="books/${book.id}">${book.title}</a></td>
-	    <td>${book.author}</td>
-	    <td>${book.user.userName}</td>
-	  </tr>
-	</c:forEach>
-	</table>
+	<hr>
+	<p>${book.thoughts}</p>
+	<hr>
+		<div class="d-flex justify-content-end"><a href="/books/${book.id}/edit"><button type="button" class="btn btn-secondary">Edit</button></a></div>
 </div>
 </body>
 </html>

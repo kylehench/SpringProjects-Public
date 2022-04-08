@@ -34,12 +34,11 @@ public class MainController {
     @PostMapping("/register")
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
             BindingResult result, Model model, HttpSession session) {
-    	User user = userService.register(newUser, result);
-        
         if(result.hasErrors()) {
             model.addAttribute("newLogin", new LoginUser());
             return "index.jsp";
         }
+        User user = userService.register(newUser, result);
         session.setAttribute("userId", user.getId());
         session.setAttribute("username", user.getUserName());
         return "redirect:/welcome";
@@ -60,9 +59,7 @@ public class MainController {
     
     @GetMapping("/welcome")
     public String welcome(Model model, HttpSession session) {
-    	if (session.getAttribute("userId")==null) {
-    		return "redirect:/logout";
-    	}
+    	if (session.getAttribute("userId")==null) return "redirect:/logout";
     	Long userId = (Long) session.getAttribute("userId");
 		model.addAttribute("user", userService.read(userId));
     	return "dashboard.jsp";
