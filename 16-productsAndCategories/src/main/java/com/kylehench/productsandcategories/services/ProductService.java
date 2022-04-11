@@ -17,7 +17,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository repository;
 	@Autowired
-	private CategoryService categoryService;
+	private CategoryRepository categoryRepository;
 	
 	// create
     public Product create(Product newProduct) {
@@ -56,7 +56,7 @@ public class ProductService {
 	public Product addCategory(long productId, long categoryId) {
 		Product product = this.read(productId);
 		List<Category> categories = product.getCategories();
-		Category newCategory = categoryService.read(categoryId);
+		Category newCategory = categoryRepository.findById(categoryId).get();
     	categories.add(newCategory);
     	product.setCategories(categories);
     	this.update(product);
