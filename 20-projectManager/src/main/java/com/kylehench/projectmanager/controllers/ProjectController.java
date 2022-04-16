@@ -78,7 +78,6 @@ public class ProjectController {
     		model.addAttribute("project", projectService.read(project_id));
     		return "projects_id_tasks.jsp";
     	}
-    	System.out.println(newTask.getId());
     	newTask.setProject(projectService.read(project_id));
     	newTask.setUser(userService.read((long) session.getAttribute("userId")));
     	taskService.create(newTask);
