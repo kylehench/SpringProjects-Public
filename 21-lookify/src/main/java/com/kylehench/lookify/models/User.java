@@ -1,3 +1,4 @@
+package com.kylehench.lookify.models;
 
 
 import javax.persistence.Entity;
