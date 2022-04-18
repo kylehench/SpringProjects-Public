@@ -26,7 +26,7 @@
 	</form:form>
 	<c:forEach var="task" items="${project.tasks}">
 	    <p>
-	    	<b>Added by ${project.lead.firstName} at <fmt:formatDate pattern="h:mm a MMM d" value="${task.createdAt}" />:</b>
+	    	<b>Added by ${task.user.firstName} at <fmt:formatDate pattern="h:mm a MMM d" value="${task.createdAt}" />:</b>
 	    	<br>${task.description}
 	    </p>
 	</c:forEach>
