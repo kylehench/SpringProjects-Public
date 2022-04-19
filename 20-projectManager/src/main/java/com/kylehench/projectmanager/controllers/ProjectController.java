@@ -56,8 +56,7 @@ public class ProjectController {
     @GetMapping("/{id}")
     public String view(@PathVariable("id") long id, HttpSession session, Model model) {
     	if (session.getAttribute("userId")==null) return "redirect:/logout";
-    	Project project = projectService.read(id);
-    	model.addAttribute("project", project);
+    	model.addAttribute("project", projectService.read(id));
     	return "projects_id.jsp";
     }
     
@@ -104,9 +103,8 @@ public class ProjectController {
     		HttpSession session) {
     	if (session.getAttribute("userId")==null) return "redirect:/logout";
     	User user = userService.read((long) session.getAttribute("userId"));
-    	List<Project> projects = user.getProjects();
-    	projects.remove(projectService.read(project_id));
-    	user.setProjects(projects);
+    	user.getProjects().remove(projectService.read(project_id));
+    	user.setProjects(user.getProjects());
     	userService.update(user);
     	return "redirect:/projects";
     }
