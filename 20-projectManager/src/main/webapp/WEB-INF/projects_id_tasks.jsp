@@ -26,7 +26,8 @@
 	</form:form>
 	<c:forEach var="task" items="${project.tasks}">
 	    <p>
-	    	<b>Added by ${task.user.firstName} at <fmt:formatDate pattern="h:mm a MMM d" value="${task.createdAt}" />:</b>
+	    	<c:set var="timeZone" value="GMT-7"/>
+	    	<b>Added by ${task.user.firstName} at <fmt:formatDate pattern="h:mm a MMM d" value="${task.createdAt}" timeZone="${timeZone}" />:</b>
 	    	<br>${task.description}
 	    </p>
 	</c:forEach>

@@ -1,5 +1,6 @@
 package com.kylehench.projectmanager.controllers;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -126,7 +127,11 @@ public class ProjectController {
     		result.rejectValue("dueDate", "in past", "Please choose a future date");
     	}
     	if (result.hasErrors()) return "projects_new.jsp";
-    	newProject.setLead(userService.read((long) session.getAttribute("userId")));
+    	User lead = userService.read((long) session.getAttribute("userId"));
+    	newProject.setLead(lead);
+    	List<User> team = new ArrayList<User>();
+    	team.add(lead);
+    	newProject.setTeam(team);
     	projectService.create(newProject);
     	return "redirect:/projects";
     }
